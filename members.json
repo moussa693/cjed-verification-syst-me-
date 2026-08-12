@@ -1,26 +1,26 @@
 {
-  "CJED-2026-001": {
+  "CJED-COM-2026-0001": {
     "nom": "Moussa Sow",
     "fonction": "Président",
     "cellule": "Cellule de communication",
     "statut": "Membre actif",
     "expiration": "31/12/2026"
   },
-  "CJED-2026-002": {
+  "CJED-COM-2026-0002": {
     "nom": "Amadou Hanne",
     "fonction": "Président",
     "cellule": "Cellule de communication",
     "statut": "Membre actif",
     "expiration": "31/12/2026"
   },
-  "CJED-2026-003": {
+  "CJED-COM-2026-0003": {
     "nom": "Astou Tall",
-    "fonction": "Membre",
-    "cellule": "Cellule de Finance",
+    "fonction": "Membre du Comité de Finance",
+    "cellule": "Comité de Finance",
     "statut": "Membre actif",
     "expiration": "31/12/2026"
   },
-  "CJED-2026-004": {
+  "CJED-COM-2026-0004": {
     "nom": "Awa Fall",
     "fonction": "Membre",
     "cellule": "Cellule Féminine",
