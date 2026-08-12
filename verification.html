@@ -1,353 +1,412 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vérification des cartes CJED</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-* {
-    box-sizing: border-box;
-}
+  <title>Vérification des cartes CJED</title>
 
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f4f7f9;
-    color: #1d3155;
-}
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-.header {
-    background: #243f76;
-    color: white;
-    text-align: center;
-    padding: 35px 20px;
-}
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f3f6fa;
+      color: #17284b;
+      min-height: 100vh;
+    }
 
-.logo {
-    font-size: 58px;
-    font-weight: 800;
-    letter-spacing: -3px;
-}
+    /* EN-TÊTE */
+    .header {
+      background: #243f73;
+      color: white;
+      padding: 35px 20px;
+      text-align: center;
+    }
 
-.logo span {
-    color: #4d9b50;
-}
+    .logo {
+      font-size: 58px;
+      font-weight: 900;
+      letter-spacing: -4px;
+      margin-bottom: 8px;
+    }
 
-.header p {
-    margin: 8px 0 0;
-    font-size: 18px;
-}
+    .logo .cj {
+      color: white;
+    }
 
-.container {
-    max-width: 700px;
-    margin: 35px auto;
-    padding: 20px;
-}
+    .logo .ed {
+      color: #62a557;
+    }
 
-.card {
-    background: white;
-    border-radius: 25px;
-    padding: 35px;
-    box-shadow: 0 8px 30px rgba(0,0,0,.08);
-}
+    .header h2 {
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 1.4;
+    }
 
-h1 {
-    text-align: center;
-    margin-top: 0;
-    font-size: 32px;
-}
+    /* CONTENEUR */
+    .container {
+      width: 92%;
+      max-width: 650px;
+      margin: 45px auto;
+    }
 
-.description {
-    text-align: center;
-    color: #687386;
-    font-size: 17px;
-    line-height: 1.5;
-}
+    .card {
+      background: white;
+      border-radius: 28px;
+      padding: 35px 28px;
+      box-shadow: 0 10px 35px rgba(0,0,0,0.08);
+    }
 
-label {
-    display: block;
-    font-weight: bold;
-    margin: 25px 0 10px;
-}
+    h1 {
+      text-align: center;
+      font-size: 34px;
+      margin-bottom: 15px;
+      color: #243f73;
+    }
 
-input {
-    width: 100%;
-    padding: 17px;
-    border: 2px solid #d8dee8;
-    border-radius: 15px;
-    font-size: 17px;
-    outline: none;
-}
+    .intro {
+      text-align: center;
+      color: #69758a;
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: 35px;
+    }
 
-input:focus {
-    border-color: #4d9b50;
-}
+    label {
+      display: block;
+      font-weight: 700;
+      font-size: 17px;
+      margin-bottom: 10px;
+    }
 
-button {
-    width: 100%;
-    margin-top: 20px;
-    padding: 17px;
-    border: 0;
-    border-radius: 15px;
-    background: #4d9b50;
-    color: white;
-    font-size: 19px;
-    font-weight: bold;
-    cursor: pointer;
-}
+    input {
+      width: 100%;
+      padding: 18px;
+      border: 2px solid #d7dfeb;
+      border-radius: 16px;
+      font-size: 18px;
+      outline: none;
+      margin-bottom: 18px;
+    }
 
-button:hover {
-    opacity: .92;
-}
+    input:focus {
+      border-color: #62a557;
+    }
 
-.result {
-    margin-top: 30px;
-    display: none;
-    border-radius: 20px;
-    padding: 25px;
-}
+    button {
+      width: 100%;
+      padding: 18px;
+      border: none;
+      border-radius: 16px;
+      background: #62a557;
+      color: white;
+      font-size: 20px;
+      font-weight: 700;
+      cursor: pointer;
+    }
 
-.valid {
-    background: #edf8ef;
-    border: 3px solid #4d9b50;
-}
+    button:hover {
+      background: #508d4d;
+    }
 
-.invalid {
-    background: #fff0f0;
-    border: 3px solid #d9534f;
-}
+    /* RESULTAT */
+    .result {
+      display: none;
+      margin-top: 30px;
+      border-radius: 22px;
+      padding: 25px;
+    }
 
-.result h2 {
-    margin-top: 0;
-}
+    .valid {
+      background: #eef9ee;
+      border: 2px solid #62a557;
+    }
 
-.valid h2 {
-    color: #438c48;
-}
+    .invalid {
+      background: #fff0f0;
+      border: 2px solid #d35c55;
+    }
 
-.invalid h2 {
-    color: #c73535;
-}
+    .result-title {
+      font-size: 26px;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
 
-.info {
-    margin-top: 18px;
-}
+    .valid .result-title {
+      color: #438842;
+    }
 
-.info p {
-    margin: 12px 0;
-    font-size: 17px;
-}
+    .invalid .result-title {
+      color: #c34740;
+    }
 
-.info strong {
-    color: #243f76;
-}
+    .info {
+      background: white;
+      border-radius: 15px;
+      padding: 16px;
+      margin-top: 10px;
+    }
 
-.footer {
-    text-align: center;
-    color: #7b8492;
-    padding: 30px 15px;
-    font-size: 14px;
-}
-</style>
+    .info strong {
+      display: block;
+      color: #243f73;
+      margin-bottom: 5px;
+    }
+
+    .status {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 16px;
+      border-radius: 30px;
+      background: #62a557;
+      color: white;
+      font-weight: 700;
+    }
+
+    .footer {
+      text-align: center;
+      color: #8993a3;
+      padding: 25px;
+      font-size: 14px;
+    }
+
+    .loading {
+      display: none;
+      text-align: center;
+      margin-top: 20px;
+      color: #69758a;
+    }
+  </style>
 </head>
 
 <body>
 
-<header class="header">
-    <div class="logo">CJ<span>ED</span></div>
-    <p>COLLECTIF DES JEUNES ENGAGÉS POUR LE DÉVELOPPEMENT</p>
-</header>
+  <header class="header">
+    <div class="logo">
+      <span class="cj">CJ</span><span class="ed">ED</span>
+    </div>
 
-<div class="container">
+    <h2>
+      COLLECTIF DES JEUNES ENGAGÉS<br>
+      POUR LE DÉVELOPPEMENT
+    </h2>
+  </header>
 
-<div class="card">
+  <main class="container">
 
-<h1>Vérification des cartes CJED</h1>
+    <section class="card">
 
-<p class="description">
-Entrez le numéro de membre pour vérifier
-l'authenticité de la carte CJED.
-</p>
+      <h1>Vérification des cartes CJED</h1>
 
-<label for="numero">N° de membre</label>
+      <p class="intro">
+        Entrez le numéro de membre pour vérifier
+        l'authenticité de la carte CJED.
+      </p>
 
-<input
-    type="text"
-    id="numero"
-    placeholder="Exemple : CJED-COM-2026-0004"
-    autocomplete="off"
->
+      <label for="numero">
+        N° de membre
+      </label>
 
-<button onclick="verifierCarte()">
-🔎 Vérifier la carte
-</button>
+      <input
+        type="text"
+        id="numero"
+        placeholder="Exemple : CJED-COM-2026-0001"
+        autocomplete="off"
+      >
 
-<div id="resultat" class="result"></div>
+      <button onclick="verifierCarte()">
+        🔎 Vérifier la carte
+      </button>
 
-</div>
+      <div class="loading" id="loading">
+        Vérification en cours...
+      </div>
 
-</div>
+      <!-- CARTE VALIDE -->
+      <div id="resultatValide" class="result valid">
 
-<div class="footer">
-© 2026 CJED — Collectif des Jeunes Engagés pour le Développement
-</div>
+        <div class="result-title">
+          ✅ Carte authentique
+        </div>
 
-<script>
+        <div class="info">
+          <strong>Nom complet</strong>
+          <span id="nom"></span>
+        </div>
 
-async function verifierCarte() {
+        <div class="info">
+          <strong>Fonction</strong>
+          <span id="fonction"></span>
+        </div>
 
-    const numero = document
+        <div class="info">
+          <strong>Cellule</strong>
+          <span id="cellule"></span>
+        </div>
+
+        <div class="info">
+          <strong>N° de membre</strong>
+          <span id="numeroAffiche"></span>
+        </div>
+
+        <div class="info">
+          <strong>Validité</strong>
+          <span id="expiration"></span>
+        </div>
+
+        <div class="status" id="statut"></div>
+
+      </div>
+
+      <!-- CARTE NON VALIDE -->
+      <div id="resultatInvalide" class="result invalid">
+
+        <div class="result-title">
+          ❌ Carte non valide
+        </div>
+
+        <p style="font-size:17px; line-height:1.6;">
+          Ce numéro de membre n'est pas enregistré
+          dans la base officielle du CJED.
+        </p>
+
+        <div class="info">
+          <strong>Numéro recherché</strong>
+          <span id="numeroInvalide"></span>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    © 2026 CJED — Collectif des Jeunes Engagés pour le Développement
+  </footer>
+
+
+  <script>
+
+    async function verifierCarte() {
+
+      const numeroInput = document
         .getElementById("numero")
         .value
         .trim()
         .toUpperCase();
 
-    const resultat = document.getElementById("resultat");
+      const valide = document.getElementById("resultatValide");
+      const invalide = document.getElementById("resultatInvalide");
+      const loading = document.getElementById("loading");
 
-    if (!numero) {
-        resultat.style.display = "block";
-        resultat.className = "result invalid";
-        resultat.innerHTML = `
-            <h2>⚠️ Numéro manquant</h2>
-            <p>Veuillez saisir un numéro de membre.</p>
-        `;
+      // Réinitialisation
+      valide.style.display = "none";
+      invalide.style.display = "none";
+
+      if (!numeroInput) {
+        alert("Veuillez entrer un numéro de membre.");
         return;
-    }
+      }
 
-    try {
+      loading.style.display = "block";
 
-        const response = await fetch("members.json");
+      try {
+
+        /*
+          members.json doit être dans le même dossier
+          que verification.html
+        */
+
+        const response = await fetch("members.json", {
+          cache: "no-store"
+        });
 
         if (!response.ok) {
-            throw new Error("Base membres inaccessible");
+          throw new Error("Impossible de charger la base des membres.");
         }
 
         const membres = await response.json();
 
-        let membre = null;
+        const membre = membres[numeroInput];
 
-        if (Array.isArray(membres)) {
+        loading.style.display = "none";
 
-            membre = membres.find(m =>
-                String(
-                    m.numero ||
-                    m.numeroMembre ||
-                    m.memberNumber ||
-                    m.id ||
-                    ""
-                ).toUpperCase() === numero
-            );
+        if (membre) {
+
+          // Nom
+          document.getElementById("nom").textContent =
+            membre.nom || "Non renseigné";
+
+          // Fonction
+          document.getElementById("fonction").textContent =
+            membre.fonction || "Non renseignée";
+
+          // Cellule
+          document.getElementById("cellule").textContent =
+            membre.cellule || "Non renseignée";
+
+          // Numéro
+          document.getElementById("numeroAffiche").textContent =
+            numeroInput;
+
+          // Validité
+          document.getElementById("expiration").textContent =
+            membre.expiration || "Non renseignée";
+
+          // Statut
+          document.getElementById("statut").textContent =
+            membre.statut || "Statut inconnu";
+
+          valide.style.display = "block";
 
         } else {
 
-            membre = membres[numero];
+          document.getElementById("numeroInvalide").textContent =
+            numeroInput;
 
+          invalide.style.display = "block";
         }
 
-        resultat.style.display = "block";
+      } catch (error) {
 
-        if (!membre) {
+        loading.style.display = "none";
 
-            resultat.className = "result invalid";
+        invalide.style.display = "block";
 
-            resultat.innerHTML = `
-                <h2>❌ Carte non valide</h2>
-                <p>
-                    Ce numéro de membre n'est pas enregistré
-                    dans la base officielle du CJED.
-                </p>
-                <div class="info">
-                    <p><strong>Numéro recherché :</strong><br>
-                    ${numero}</p>
-                </div>
-            `;
+        document.querySelector("#resultatInvalide .result-title")
+          .textContent = "⚠️ Erreur de vérification";
 
-            return;
+        document.querySelector("#resultatInvalide p")
+          .textContent =
+          "La base officielle des membres n'a pas pu être chargée. Veuillez réessayer.";
+
+        document.getElementById("numeroInvalide").textContent =
+          numeroInput;
+      }
+    }
+
+
+    // Permet de valider avec la touche Entrée
+    document.getElementById("numero").addEventListener(
+      "keydown",
+      function(event) {
+
+        if (event.key === "Enter") {
+          verifierCarte();
         }
 
-        resultat.className = "result valid";
+      }
+    );
 
-        resultat.innerHTML = `
-            <h2>✅ Carte vérifiée</h2>
-
-            <p>
-                <strong>MEMBRE ACTIF</strong>
-            </p>
-
-            <div class="info">
-
-                <p>
-                    <strong>N° de membre :</strong><br>
-                    ${valeur(membre.numero || membre.numeroMembre || membre.memberNumber || membre.id)}
-                </p>
-
-                <p>
-                    <strong>Nom :</strong><br>
-                    ${valeur(membre.nom || membre.name || membre.nomComplet)}
-                </p>
-
-                <p>
-                    <strong>Fonction :</strong><br>
-                    ${valeur(membre.fonction || membre.function || membre.role)}
-                </p>
-
-                <p>
-                    <strong>Cellule :</strong><br>
-                    ${valeur(membre.cellule || membre.cell || "—")}
-                </p>
-
-                <p>
-                    <strong>Statut :</strong><br>
-                    ${valeur(membre.statut || membre.status || "Membre actif")}
-                </p>
-
-                <p>
-                    <strong>Validité :</strong><br>
-                    ${valeur(membre.validite || membre.validity || "31/12/2026")}
-                </p>
-
-            </div>
-        `;
-
-    } catch (error) {
-
-        resultat.style.display = "block";
-        resultat.className = "result invalid";
-
-        resultat.innerHTML = `
-            <h2>⚠️ Erreur</h2>
-            <p>
-                Impossible d'accéder à la base officielle
-                des membres pour le moment.
-            </p>
-        `;
-    }
-}
-
-function valeur(value) {
-
-    if (value === undefined || value === null || value === "") {
-        return "—";
-    }
-
-    return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-}
-
-document.getElementById("numero").addEventListener("keypress", function(e) {
-
-    if (e.key === "Enter") {
-        verifierCarte();
-    }
-
-});
-
-</script>
+  </script>
 
 </body>
 </html>
