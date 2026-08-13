@@ -9,7 +9,7 @@
 <header><div class="logo">CJ<span>ED</span></div><div>Générateur officiel de cartes membres</div></header>
 <div class="wrap"><div class="box form"><h2>Nouvelle carte</h2>
 <label>Nom complet</label><input id="name" placeholder="Awa Fall"><label>Fonction</label><input id="fun" placeholder="Membre"><label>Cellule</label><input id="cell" placeholder="Cellule Féminine"><label>N° membre</label><input id="mid"<input id="mid" value=""> <label>Téléphone</label><input id="phone"><label>Email</label><input id="email"><label>Adresse</label><input id="addr" placeholder="Louga, Sénégal"><label>Statut</label><select id="status"><option>Membre actif</option><option>Membre honoraire</option></select><label>Validité</label><input id="date" type="date" value="2026-12-31"><label>Photo</label><input id="file" type="file" accept="image/*"><div class="buttons"><button class="btn green" onclick="make()">Générer</button><button class="btn blue" onclick="png()">PNG</button><button class="btn" onclick="window.print()">PDF</button></div></div>
-<div class="box cardbox"><h2>Aperçu</h2><div class="card" id="card"><div class="top"><div class="clogo">CJ<span>ED</span></div><div class="org">COLLECTIF DES JEUNES ENGAGÉS POUR LE DÉVELOPPEMENT</div></div><div class="side"></div><img id="cphoto" class="photo"><div class="content"><div class="title">CARTE DE MEMBRE</div><div id="cname" class="name">NOM DU MEMBRE</div><div id="cfun" class="fun">Membre</div><div id="ccell" class="cell">Cellule</div><div class="id">N° MEMBRE &nbsp; <span id="cid">CJED-COM-2026-0005</span></div><div class="details"><div id="cphone">Téléphone</div><div id="cemail">Email</div><div id="caddr">Adresse</div><div class="status">STATUT : <span id="cstatus">MEMBRE ACTIF</span></div><div id="cdate">Valable jusqu'au 31/12/2026</div></div></div><div id="qr" class="qr"></div><div class="scan<button type="button" onclick="alert('Cartes gérées')">CARTES GÉRÉES</button>SCANNER POUR VÉRIFIER</div><div class="slogan">Notre engagement, notre avenir.</div></div></div></div>
+<div class="box cardbox"><h2>Aperçu</h2><div class="card" id="card"><div class="top"><div class="clogo">CJ<span>ED</span></div><div class="org">COLLECTIF DES JEUNES ENGAGÉS POUR LE DÉVELOPPEMENT</div></div><div class="side"></div><img id="cphoto" class="photo"><div class="content"><div class="title">CARTE DE MEMBRE</div><div id="cname" class="name">NOM DU MEMBRE</div><div id="cfun" class="fun">Membre</div><div id="ccell" class="cell">Cellule</div><div class="id">N° MEMBRE &nbsp; <span id="cid">CJED-COM-2026-0005</span></div><div class="details"><div id="cphone">Téléphone</div><div id="cemail">Email</div><div id="caddr">Adresse</div><div class="status">STATUT : <span id="cstatus">MEMBRE ACTIF</span></div><div id="cdate">Valable jusqu'au 31/12/2026</div></div></div><div id="qr" class="qr"></div><div class="scan<button type="button" onclick="showManagedCards()">CARTES GÉRÉES</button>SCANNER POUR VÉRIFIER</div><div class="slogan">Notre engagement, notre avenir.</div></div></div></div>
 <script>
 const $=id=>document.getElementById(id);let photo="";
 $("file").onchange=e=>{let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{photo=r.result;$("cphoto").src=photo};r.readAsDataURL(f)};
@@ -30,6 +30,19 @@ async function png(){
 }
 
 make();
+function showManagedCards(){
+  const cards = JSON.parse(localStorage.getItem("cjed_cards") || "[]");
+  if(cards.length === 0){
+    alert("Aucune carte gérée pour le moment.");
+    return;
+  }
+  let html = "<h2>Cartes gérées</h2>";
+  cards.forEach(card=>{
+    html += "<p><b>" + (card.name || "Sans nom") + "</b><br>N° membre : " + (card.mid || "") + "</p>";
+  });
+  const w = window.open("", "_blank");
+  w.document.write(html);
+}
 </script></body></html>
   
   
