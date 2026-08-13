@@ -176,5 +176,15 @@
     "adresse": "Louga, Sénégal",
     "statut": "Membre actif",
     "expiration": "31/12/2026"
+  },
+  "CJED-COM-2026-0020": {
+    "nom": "Moussa Test",
+    "fonction": "Membre",
+    "cellule": "Louga",
+    "telephone": "770000000",
+    "email": "test@cjed.sn",
+    "adresse": "Louga, Sénégal",
+    "statut": "Membre actif",
+    "expiration": "31/12/2026"
   }
 }
