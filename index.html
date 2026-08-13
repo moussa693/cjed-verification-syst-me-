@@ -17,7 +17,7 @@ function dateFR(v){if(!v)return"31/12/2026";let a=v.split("-");return a[2]+"/"+a
 function make(){ let n = Number(localStorage.getItem("cjed_next") || "5");
 let mid = "CJED-COM-2026-" + String(n).padStart(4, "0");
 $("mid").value = mid;
-localStorage.setItem("cjed_next", String(n + 1));$("cname").textContent=$("name").value||"NOM DU MEMBRE";$("cfun").textContent=$("fun").value||"Membre";$("ccell").textContent=$("cell").value||"Cellule";$("cid").textContent=$("mid").value||"CJED-COM-2026-0005";$("cphone").textContent=$("phone").value||"Téléphone";$("cemail").textContent=$("email").value||"Email";$("caddr").textContent=$("addr").value||"Adresse";$("cstatus").textContent=$("status").value.toUpperCase();$("cdate").textContent="Valable jusqu'au "+dateFR($("date").value);$("qr").innerHTML="";new QRCode($("qr"),{text:"https://moussa693.github.io/?member="+encodeURIComponent($("mid").value),width:129,height:129,colorDark:"#17396b",colorLight:"#fff"})}
+loca
 async function png(){make();await new Promise(r=>setTimeout(r,300));let c=await html2canvas($("card"),{scale:2});let a=document.createElement("a");a.download=($("mid").value||"carte-cjed")+".png";a.href=c.toDataURL("image/png");a.click()}
 make();
 </script></body></html>
